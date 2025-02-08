@@ -1,0 +1,17 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+
+    <bean id="myBean" class="org.example.Bean.UserConfig" >
+        <property name="name" value="Vedant"/>
+        <property name="className" value="2"/>
+    </bean>
+    <bean id="userServiceBean" class="org.example.Service.UserService" >
+        <constructor-arg ref="myBean"/>
+    </bean>
+    <bean id="orderServiceBean" class="org.example.Service.OrderService" factory-method="createInstance">
+        <constructor-arg ref="myBean"/>
+        <constructor-arg ref="userServiceBean"/>
+    </bean>
+</beans>
